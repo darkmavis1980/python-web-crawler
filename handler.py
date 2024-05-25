@@ -1,12 +1,14 @@
 import json
 from bs4 import BeautifulSoup
 import requests
+import time
 
 """
 Crawl the given URL and return the raw content, paragraphs and links
 """
 def crawl(event, context):
 
+    start_time = time.time()
     query_string_params = event.get('queryStringParameters')
     url = query_string_params.get('url') if query_string_params else None
 
@@ -18,6 +20,7 @@ def crawl(event, context):
          
         with requests.Session() as session:
             page = session.get(url)
+            fetching_time = (time.time() - start_time) * 1000
             soup = BeautifulSoup(page.content, 'html.parser')
 
     except Exception as e:
@@ -38,7 +41,8 @@ def crawl(event, context):
         'url': url,
         'links': [],
         'raw_content': raw_content,
-        'paragraphs': paragraphs_list
+        'paragraphs': paragraphs_list,
+        'stats': {}
     }
 
     for i in hrefs:
@@ -50,6 +54,12 @@ def crawl(event, context):
                 'link': link
             })
 
+    total_execution = (time.time() - start_time) * 1000
+
+    data['stats'].update({
+        'total_execution': round(total_execution),
+        'fetching_time': round(fetching_time)
+    })
     response = {"statusCode": 200, "body": json.dumps(data)}
 
     return response
