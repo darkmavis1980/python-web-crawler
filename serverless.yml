@@ -2,17 +2,21 @@ service: python-web-crawler
 
 frameworkVersion: ">=2.24.0"
 
+package:
+  patterns:
+    - '!node_modules/**'
+
 provider:
   name: aws
   runtime: python3.10
-  profile: ${env:AWS_PROFILE, ''}
-  stage: ${opt:stage, 'production'}
+  profile: ${env:AWS_PROFILE, 'default'}
+  stage: ${opt:stage, 'dev'}
   region: ${opt:region, 'eu-west-1'}
   apiGateway:
     shouldStartNameWithService: true
 
 functions:
-  hello:
+  crawler:
     handler: handler.crawl
     events:
       - http:
