@@ -2,6 +2,8 @@ service: python-web-crawler
 
 frameworkVersion: ">=2.24.0"
 
+useDotenv: true
+
 package:
   patterns:
     - '!node_modules/**'
@@ -12,6 +14,8 @@ provider:
   profile: ${env:AWS_PROFILE, 'default'}
   stage: ${opt:stage, 'dev'}
   region: ${opt:region, 'eu-west-1'}
+  iam:
+    role: ${env:AWS_IAM_ROLE, 'lambda'}
   apiGateway:
     shouldStartNameWithService: true
 

@@ -21,4 +21,7 @@ venv/
 # Serverless directories
 .serverless
 
+.env*
+!.env.sample
+
 node_modules/
