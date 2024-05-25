@@ -1,0 +1,22 @@
+{
+  "name": "python-web-crawler",
+  "version": "0.1.0",
+  "description": "This is simple python web crawler. It is a Python script that crawls any given urls.",
+  "main": "index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "offline": "serverless offline --reloadHandler"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "serverless": "^3.38.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^13.6.0",
+    "serverless-python-requirements": "^6.1.0"
+  }
+}
