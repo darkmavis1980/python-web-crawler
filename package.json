@@ -1,6 +1,6 @@
 {
   "name": "python-web-crawler",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "This is simple python web crawler. It is a Python script that crawls any given urls.",
   "main": "index.js",
   "engines": {
