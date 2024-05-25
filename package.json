@@ -7,15 +7,17 @@
     "node": ">=20"
   },
   "scripts": {
-    "offline": "serverless offline --reloadHandler"
+    "offline": "serverless offline --reloadHandler",
+    "deploy": "rm -Rf .build && serverless deploy",
+    "remove-app": "serverless remove",
+    "deploy:prod": "rm -Rf .build && serverless deploy --stage production",
+    "remove-app:prod": "serverless remove --stage production"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "serverless": "^3.38.0"
-  },
   "devDependencies": {
+    "serverless": "^3.38.0",
     "serverless-offline": "^13.6.0",
     "serverless-python-requirements": "^6.1.0"
   }
